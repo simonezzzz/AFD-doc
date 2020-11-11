@@ -21,7 +21,6 @@ Troubleshooting steps
 	2. Send the request to your backend directly (without going through Front Door) using the path and http method of the helth probe.
 	If your backend does not accept the path and/or HTTP method configured in the custom health probe, for example, if the health probe path is "/health"  and HTTP method is POST, but there is no path called "/health" or this path does not allow POST method, the health check would fail.
 	**Solution**: You can disable custom health probe, or you can specify the path and HTTP method that is available for the backend pool.
-	
 	3. Send the request to your backend directly (without going through Front Door) using the port, hostname and host header you have configured in the backendpool.
 	If you are unable to access it, the configuration of backend pool is not appropriate.
 	**Solution**:
