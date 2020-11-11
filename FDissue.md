@@ -12,12 +12,19 @@ Cause
 
 
 Troubleshooting steps
+	
 	1. Send the request to your backend directly (without going through Front Door) using the hostname and host header filled in the backend pool.
+	
 	Send the request to your Front Door.
+	
 	If going through the Front Door results in 503 error response code, but you can access backend pool directly:
+	
 	If the backend hostname is IP address, and  you can see the certificate error  when you access the backend directly:
+		
 		○ **Certificate subject name mismatch**: For HTTPS connections, Front Door expects that your backend presents certificate from a valid CA with subject name(s) matching the backend hostname. As an example, if your backend hostname is set to myapp-centralus.contosonews.net and the certificate that your backend presents during the TLS handshake neither has myapp-centralus.contosonews.net nor *myapp-centralus*.contosonews.net in the subject name, the Front Door will refuse the connection and result in an error.
+		
 		**Solution**: While it is not recommended from a compliance standpoint, you can workaround this error by disabling certificate subject name check for your Front Door. This is present under Settings in Azure portal and under - -BackendPoolsSettings in the API.
+		
 		○ **Backend hosting certificate from invalid CA**: Only certificates from [valid CAs](https://docs.microsoft.com/en-us/azure/frontdoor/front-door-troubleshoot-allowed-ca) can be used at the backend with Front Door. Certificates from internal CAs or self-signed certificates are not allowed.
 		
 	2. Send the request to your backend directly (without going through Front Door) using the path and http method of the helth probe.
